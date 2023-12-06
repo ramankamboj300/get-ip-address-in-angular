@@ -1,0 +1,12 @@
+   getIPAddress(callback) {
+    fetch('https://api.ipify.org?format=json')
+        .then(response => response.json())
+        .then(data => {
+            callback(data.ip);
+        });
+}
+  ngOnInit(): void {
+    this.getIPAddress(ip => {
+    this.loginForm.patchValue({ip:ip.toString()});
+  });
+  }
